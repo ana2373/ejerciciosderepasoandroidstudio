@@ -24,7 +24,9 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.RectangleShape
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.draw.rotate
 import com.example.ejemplos.ui.theme.EjemplosTheme
+
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -176,5 +178,77 @@ fun ScaleExample() {
         Box(Modifier.scale(0.5f).size(100.dp).background(Color.Yellow))
         Box(Modifier.scale(1f).size(100.dp).background(Color.Blue))
         Box(Modifier.scale(2f).size(100.dp).background(Color.Red))
+    }
+}
+@Composable
+@Preview
+fun RotateExample() {
+    Row(modifier = Modifier.padding(16.dp)) {
+        RotableCircle(0f)
+        RotableCircle(45f)
+        RotableCircle(90f)
+        RotableCircle(135f)
+    }
+}
+@Composable
+fun RotableCircle(degrees: Float) {
+    Box(
+        Modifier
+
+            .rotate(degrees)
+            .size(50.dp)
+            .background(Color.Yellow, CircleShape)
+
+    ) {
+        Box(
+
+            Modifier
+
+                .size(15.dp)
+                .background(Color.Blue, CircleShape)
+                .align(Alignment.TopCenter)
+
+        )
+    }
+}
+@Composable
+@Preview
+fun ChainingExample() {
+    Box(
+        Modifier
+
+            .border(2.dp, Color.Red)
+            .background(Color.Blue)
+            .padding(16.dp)
+            .background(Color.Yellow)
+            .size(100.dp)
+
+    )
+}
+@Composable
+@Preview
+fun ChainingExample2() {
+    Row {
+        Box(
+
+            Modifier
+
+                .border(2.dp, Color.Red)
+                .background(Color.Blue)
+                .padding(16.dp)
+                .background(Color.Yellow)
+                .size(100.dp)
+
+        )
+        Box(
+
+            Modifier
+                .size(100.dp)
+                .background(Color.Yellow)
+                .border(2.dp, Color.Red)
+                .padding(16.dp)
+                .background(Color.Blue)
+
+        )
     }
 }
